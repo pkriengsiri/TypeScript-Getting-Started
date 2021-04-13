@@ -1,6 +1,6 @@
-/// <reference path="result.ts" />
+import {Result} from "./result";
 
-class Scoreboard {
+export class Scoreboard {
   private results: Result[] = [];
 
   addResult(newResult: Result): void {
@@ -26,6 +26,5 @@ class Scoreboard {
     
     const scoresElement: HTMLElement = document.getElementById('scores')!;
     scoresElement.innerHTML = output;
-
   }
 }
