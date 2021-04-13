@@ -1,15 +1,21 @@
-function startGame() {
-  // starting a new game
+/// <reference path="player.ts" />
+/// <reference path="game.ts" />
 
-  let playerName: string = 'Pete';
-  logPlayer(playerName);
-  
-  let messagesElement = document.getElementById('messages');
-  messagesElement!.innerText = "Welcome to MultiMath!  Starting new game...";
-}
+let newGame: Game;
 
-function logPlayer(name) {
-  console.log(`New game starting for player: ${name}`);
-}
+// add click handler to the start game button
+document.getElementById('startGame')!.addEventListener('click', () => {
+  const player: Player = new Player();
+  player.name = Utility.getInputValue('playername');
 
-document.getElementById("startGame")!.addEventListener("click", startGame);
+  const problemCount: number = Number(Utility.getInputValue('problemCount'));
+  const factor: number = Number(Utility.getInputValue('factor'));
+
+  newGame = new Game(player, problemCount, factor);
+  newGame.displayGame();
+});
+
+// add click handler to the calculate score button
+document.getElementById('calculate')!.addEventListener('click', () => {
+  newGame.calculateScore();
+});
